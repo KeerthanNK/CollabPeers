@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 const Signup = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    cpassword : '',
-    collegename: '',
-    year: '',
-    course: '',
+    name: "",
+    email: "",
+    password: "",
+    cpassword: "",
+    collegename: "",
+    year: "",
+    course: "",
   });
 
   const handleChange = (e) => {
@@ -19,15 +19,18 @@ const Signup = () => {
     });
   };
 
-  const handleSubmit =  async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', JSON.stringify(formData, null, 2));
+    console.log("Form submitted:", JSON.stringify(formData, null, 2));
     try {
-        const response = await axios.post('http://localhost:8000/signup', formData);
-        console.log('Response from backend:', response.data);
-      } catch (error) {
-        console.error('Error submitting form:', error);
-      }
+      const response = await axios.post(
+        "http://localhost:8000/user/signup",
+        formData
+      );
+      console.log("Response from backend:", response.data);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   };
 
   return (
