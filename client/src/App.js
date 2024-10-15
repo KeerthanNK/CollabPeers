@@ -1,8 +1,16 @@
 import "./index.css";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from "./components/Home";
+import Signup from "./components/signup"
 export default function App() {
   return (
-    <h1 className="text-3xl font-bold text-purple-700 underline">
-      Hello world!
-    </h1>
+    <Router>
+      <div>
+        <Routes>
+          <Route path="/" element = {<Home/>}/>
+          <Route path="/signup" element = {<Signup/>}/>
+        </Routes>
+      </div>
+    </Router>
   );
 }
