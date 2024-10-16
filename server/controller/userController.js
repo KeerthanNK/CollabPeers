@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken"
-import User from '../model/userschema.js'
+import jwt from "jsonwebtoken";
+import User from "../model/userschema.js";
 const registerUser = async (req, res) => {
   try {
     const { name, email, password, cpassword, collegename, year, course } =
@@ -43,34 +43,30 @@ const registerUser = async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 };
-const authUser = async (req,res)=>{
+const authUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(400).json({ error: "Fill credentials" });
+    }
+    const user = await User.findOne({ email: email });
+    const isMatch = await bcrypt.compare(password, user.password);
 
-  try{
-    const { email , password } = req.body;
-     if(!email || !password)
-       {
-           return res.status(400).json({error : "Fill credentials"});
-       } 
-     const user = await User.findOne({email:email});
-     const isMatch  = await bcrypt.compare(password  , user.password);
-     
-     if(!user)
-     {
-       res.status(400).json({error:"invalid credentials"});
-     }
-     else if(!isMatch) res.status(400).json({error:"invalid credentials"});
-     else{
-       const token = await user.generateAuthToken();
-       //console.log(token);
-       res.cookie("jwtoken" , token , {
-          expires : new Date(Date.now() + 25000000000),
-          httpOnly : true
-       });
-       res.status(201).json({message:"signin successfull",token,user});
-     }
-  } catch(err){
-   console.log(err);
+    if (!user) {
+      res.status(400).json({ error: "invalid credentials" });
+    } else if (!isMatch) res.status(400).json({ error: "invalid credentials" });
+    else {
+      const token = jwt.sign(
+        { id: user._id, collegename: user.collegename, year: user.year },
+        process.env.SECRET_KEY,
+        { expiresIn: "1h" }
+      );
+
+      res.status(201).json({ message: "signin successfull", token, user });
+    }
+  } catch (err) {
+    console.log(err);
   }
 };
 
-export {registerUser,authUser};
+export { registerUser, authUser };
