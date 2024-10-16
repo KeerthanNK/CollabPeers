@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
+
 const Signin = () => {
   const [formData, setFormData] = useState({
     email: "",
-    password:"",
+    password: "",
   });
 
   const handleChange = (e) => {
@@ -28,17 +29,21 @@ const Signin = () => {
         }
       );
       console.log("Response from backend:", response.data);
-    } catch (error) {
-      if (error.response) {
-        console.error("Backend responded with an error:", error.response.data);
-      } else if (error.request) {
-        console.error("No response received:", error.request);
+      const Data = response.data; 
+      console.log(response.data);
+      if (response.status === 201) {
+        window.alert("Login Successful");
+        
+        // Store the token in a cookie
+        localStorage.setItem("token", Data.token);
+
       } else {
-        console.error("Error setting up request:", error.message);
+        window.alert("Invalid credentials");
       }
+    } catch (error) {
+      console.error("Error occurred during signin:", error.message);
     }
   };
-  
 
   return (
     <form onSubmit={handleSubmit}>
@@ -53,7 +58,7 @@ const Signin = () => {
         />
       </div>
       <div>
-        <label>password:</label>
+        <label>Password:</label>
         <input
           type="password"
           name="password"
