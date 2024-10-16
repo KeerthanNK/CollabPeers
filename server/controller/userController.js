@@ -1,6 +1,5 @@
-import User from "./model/userschema.js";
 import bcrypt from "bcryptjs";
-
+import User from '../model/userschema.js'
 const registerUser = async (req, res) => {
   try {
     const { name, email, password, cpassword, collegename, year, course } =
@@ -26,14 +25,12 @@ const registerUser = async (req, res) => {
     if (existingUser) {
       return res.status(400).json({ error: "User already exists" });
     }
-
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
-
+    
     const newUser = await User.create({
       name,
       email,
-      password: hashedPassword,
+      password,
+      cpassword,
       collegename,
       year,
       course,
@@ -45,5 +42,27 @@ const registerUser = async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 };
+const authUser = async (req,res)=>{
 
-export default registerUser;
+  try{
+    const { email , password } = req.body;
+     if(!email || !password)
+       {
+           return res.status(400).json({error : "Fill credentials"});
+       } 
+     const user = await User.findOne({email:email});
+     const isMatch  = await bcrypt.compare(password  , user.password);
+     if(!user)
+     {
+       res.status(400).json({error:"invalid credentials"});
+     }
+     else if(!isMatch) res.status(400).json({error:"invalid credentials"});
+     else{
+       res.status(201).json({message:"signin successfull"});
+     }
+  } catch(err){
+   console.log(err);
+  }
+};
+
+export {registerUser,authUser};

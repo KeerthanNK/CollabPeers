@@ -1,14 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
-const Signup = () => {
+const Signin = () => {
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
-    password: "",
-    cpassword: "",
-    collegename: "",
-    year: "",
-    course: "",
+    password:"",
   });
 
   const handleChange = (e) => {
@@ -24,7 +19,7 @@ const Signup = () => {
     console.log("Form submitted:", JSON.stringify(formData, null, 2));
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/user/signup",
+        "http://localhost:8000/api/user/signin",
         formData,
         {
           headers: {
@@ -48,16 +43,6 @@ const Signup = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>Name:</label>
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div>
         <label>Email:</label>
         <input
           type="email"
@@ -77,49 +62,9 @@ const Signup = () => {
           required
         />
       </div>
-      <div>
-        <label>cpassword:</label>
-        <input
-          type="password"
-          name="cpassword"
-          value={formData.cpassword}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div>
-        <label>College Name:</label>
-        <input
-          type="text"
-          name="collegename"
-          value={formData.collegename}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div>
-        <label>Year:</label>
-        <input
-          type="text"
-          name="year"
-          value={formData.year}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div>
-        <label>Course:</label>
-        <input
-          type="text"
-          name="course"
-          value={formData.course}
-          onChange={handleChange}
-          required
-        />
-      </div>
       <button type="submit">Submit</button>
     </form>
   );
 };
 
-export default Signup;
+export default Signin;
