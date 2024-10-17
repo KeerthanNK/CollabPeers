@@ -57,9 +57,14 @@ const authUser = async (req, res) => {
     } else if (!isMatch) res.status(400).json({ error: "invalid credentials" });
     else {
       const token = jwt.sign(
-        { id: user._id, collegename: user.collegename, year: user.year },
+        {
+          id: user._id,
+          collegename: user.collegename,
+          year: user.year,
+          email: user.email,
+        },
         process.env.SECRET_KEY,
-        { expiresIn: "1h" }
+        { expiresIn: "1d" }
       );
 
       res.status(201).json({ message: "signin successfull", token, user });
