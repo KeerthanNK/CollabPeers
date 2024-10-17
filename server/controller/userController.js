@@ -31,13 +31,12 @@ const registerUser = async (req, res) => {
       name,
       email,
       password,
-      cpassword,
       collegename,
       year,
       course,
     });
 
-    res.status(201).json({ msg: "User created successfully", newUser });
+    res.status(201).json({ msg: "Register successfull", newUser });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Server error" });
@@ -67,7 +66,7 @@ const authUser = async (req, res) => {
         { expiresIn: "1d" }
       );
 
-      res.status(201).json({ message: "signin successfull", token, user });
+      res.status(201).json({ message: "Login Successfull", token, user });
     }
   } catch (err) {
     console.log(err);

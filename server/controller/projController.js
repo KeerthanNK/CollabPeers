@@ -3,20 +3,15 @@ import Proj from "../model/projSchema.js";
 
 export const createProj = async (req, res) => {
   try {
-    const {
-      projectname,
-      description,
-      availableSlots,
-      technology,
-      searchingFor,
-    } = req.body;
+    const { projectname, description, availableSlots, technology, roles } =
+      req.body;
 
     if (
       !projectname ||
       !description ||
       !availableSlots ||
       !technology ||
-      !searchingFor
+      !roles
     ) {
       return res.status(400).json({ error: "Please fill all fields" });
     }
@@ -38,7 +33,7 @@ export const createProj = async (req, res) => {
       technology,
       collegename: decoded.collegename,
       year: decoded.year,
-      searchingFor,
+      roles,
       email: Email,
     });
 
@@ -62,8 +57,17 @@ export const getUserProject = async (req, res) => {
 
     const getAll = await Proj.find({ email: Email });
 
-    res.status(200).json({ getAll });
+    res.status(200).json({ msg: "All projects ", getAll });
   } catch (err) {
     res.status(500).json({ error: "Internal Server Error" + err });
+  }
+};
+
+export const getAllProjects = async (req, res) => {
+  try {
+    const getAll = await Proj.find({});
+    res.status(200).json({ msg: "All projects ", getAll });
+  } catch (err) {
+    res.status(500).send(err);
   }
 };
