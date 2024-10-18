@@ -71,3 +71,24 @@ export const getAllProjects = async (req, res) => {
     res.status(500).send(err);
   }
 };
+
+export const filterData = async (req, res) => {
+  const { collegename, year } = req.query;
+
+  const filter = {};
+
+  if (collegename) {
+    filter.collegename = { $regex: collegename, $options: "i" };
+  }
+
+  if (year) {
+    filter.year = year;
+  }
+
+  try {
+    const projects = await Proj.find(filter);
+    res.status(200).json(projects);
+  } catch (err) {
+    res.status(500).json({ msg: err.message });
+  }
+};
