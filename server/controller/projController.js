@@ -3,15 +3,24 @@ import Proj from "../model/projSchema.js";
 
 export const createProj = async (req, res) => {
   try {
-    const { projectname, description, availableSlots, technology, roles } =
-      req.body;
+    const {
+      projectname,
+      description,
+      availableSlots,
+      technology,
+      roles,
+      deadline,
+    } = req.body;
+
+    console.log(req.body);
 
     if (
       !projectname ||
       !description ||
       !availableSlots ||
       !technology ||
-      !roles
+      !roles ||
+      !deadline
     ) {
       return res.status(400).json({ error: "Please fill all fields" });
     }
@@ -34,6 +43,7 @@ export const createProj = async (req, res) => {
       collegename: decoded.collegename,
       year: decoded.year,
       roles,
+      deadline,
       email: Email,
     });
 
