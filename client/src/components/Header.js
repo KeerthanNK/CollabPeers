@@ -29,12 +29,22 @@ const Header = () => {
 
   return (
     <nav className="sticky top-0 z-40 flex justify-evenly border-solid border-2 border-gray-100 h-20 items-center bg-slate-200">
-      <div className="hover:cursor-pointer hover:underline">logo</div>
+      <div className="hover:cursor-pointer hover:underline">
+        <a href="/">logo</a>
+      </div>
       <div className="flex justify-evenly gap-3">
-        <div className="hover:cursor-pointer hover:underline">Projects</div>
-        <div className="hover:cursor-pointer hover:underline">MyProjects</div>
-        <div className="hover:cursor-pointer hover:underline">NewProject</div>
-        <div className="hover:cursor-pointer hover:underline">SavedProjects</div>
+        <div className="hover:cursor-pointer hover:underline">
+          <a href="/">Projects</a>
+        </div>
+        <div className="hover:cursor-pointer hover:underline">
+          <a href="/my-projects">MyProjects</a>
+        </div>
+        <div className="hover:cursor-pointer hover:underline">
+              <a href="/new-project"> NewProjects </a>
+        </div>
+        <div className="hover:cursor-pointer hover:underline">
+          <a href="/save">SavedProjects</a>
+        </div>
       </div>
       <div
         className="relative hover:cursor-pointer"

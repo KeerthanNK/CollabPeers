@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 // Sample college data (replace this with actual data or fetch from API)
 const colleges = [
+    "AIT",
   "Sardar Vallabhbhai National Institute of Technology",
   "Sathyabama Institute of Science and Technology",
   "Sikkim Manipal Institute of Technology",
