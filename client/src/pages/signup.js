@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom"; // Import the useNavigate hook
+
 const Signup = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -10,6 +12,8 @@ const Signup = () => {
     year: "",
     course: "",
   });
+
+  const navigate = useNavigate(); // Initialize the navigate function
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,6 +37,9 @@ const Signup = () => {
         }
       );
       console.log("Response from backend:", response.data);
+      
+      // Navigate to the home page on successful registration
+      navigate("/home");
     } catch (error) {
       if (error.response) {
         console.error("Backend responded with an error:", error.response.data);
@@ -43,7 +50,6 @@ const Signup = () => {
       }
     }
   };
-  
 
   return (
     <form onSubmit={handleSubmit}>
@@ -68,7 +74,7 @@ const Signup = () => {
         />
       </div>
       <div>
-        <label>password:</label>
+        <label>Password:</label>
         <input
           type="password"
           name="password"
@@ -78,7 +84,7 @@ const Signup = () => {
         />
       </div>
       <div>
-        <label>cpassword:</label>
+        <label>Confirm Password:</label>
         <input
           type="password"
           name="cpassword"

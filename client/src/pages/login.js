@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom"; // Import the useNavigate hook
 
 const Signin = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate(); // Initialize the navigate function
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,14 +32,16 @@ const Signin = () => {
         }
       );
       console.log("Response from backend:", response.data);
-      const Data = response.data; 
-      console.log(response.data);
+      const Data = response.data;
+      
       if (response.status === 201) {
         window.alert("Login Successful");
-        
-        // Store the token in a cookie
+
+        // Store the token in localStorage
         localStorage.setItem("token", Data.token);
 
+        // Navigate to the home page on successful login
+        navigate("/");
       } else {
         window.alert("Invalid credentials");
       }
@@ -66,6 +71,9 @@ const Signin = () => {
           onChange={handleChange}
           required
         />
+      </div>
+      <div>
+        <p>Do not have an account? <a href="/register">Register</a></p>
       </div>
       <button type="submit">Submit</button>
     </form>

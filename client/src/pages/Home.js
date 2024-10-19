@@ -1,13 +1,18 @@
-// Home Component
+// Home.js
 import React, { useState, useEffect } from 'react';
 import Cards from '../cards-dir/cards';
 import axios from 'axios';
 import CollegeSearchBar from '../components/collegeSearchbar';
+
 const Home = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // State for the searched college and selected year
+  const [searchedCollege, setSearchedCollege] = useState('');
+  const [year, setYear] = useState('All'); // Initialize to 'All'
+  
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -25,32 +30,76 @@ const Home = () => {
 
   const data = users.getAll || [];
 
+ 
+ // console.log('Data from API:', data);
+
+
+  const filteredData = data.filter((element) => {
+    const matchesCollege = searchedCollege === '' || searchedCollege === 'All' || element.collegename === searchedCollege;
+
+    const matchesYear = year === 'All' || String(element.year) === String(year);
+
+   // console.log(`Filtering - Project Year: ${element.year}, Selected Year: ${year}, Matches: ${matchesYear}`);
+
+    return matchesCollege && matchesYear;
+  });
+   const selectAllCol = (college) =>{
+      setSearchedCollege(college);
+   }
+  //console.log('Filtered Data:', filteredData);
+
   return (
     <>
-      
       <div className="pt-6 sticky top-[80px] z-45 bg-white flex justify-center gap-48 items-center py-4 shadow-md">
         <div>
-          <YearDashBoard />
+          {/* Pass setYear to YearDashBoard */}
+          <YearDashBoard setYear={setYear} />
         </div>
         <div>
-          <CollegeSearchBar />
+          {/* Pass the searchedCollege and setSearchedCollege to CollegeSearchBar */}
+          <CollegeSearchBar searchedCollege={searchedCollege} setSearchedCollege={setSearchedCollege} />
         </div>
+        <div className='hover:cursor-pointer' onClick={() => selectAllCol('All')}>Select all Colleges</div>
       </div>
 
       <div className="mt-10 z-0">
-        {data.map((element, index) => (
-          <Cards key={index} Project_name={element.projectname} availableSlots={element.availableSlots} />
-        ))}
+        {/* Display the selected college and year */}
+        <h3>Showing the projects of: {searchedCollege || "All Colleges"}</h3>
+        <h4>Selected Year: {year || "All Years"}</h4>
+        {loading && <p>Loading...</p>}
+        {error && <p>Error: {error}</p>}
+        {!loading && !error && filteredData.length > 0 ? (
+          filteredData.map((element, index) => (
+            <Cards
+              key={index}
+              Project_name={element.projectname}
+              college_name={element.collegename}
+              availableSlots={element.availableSlots}
+              expire_date={element.deadline}
+              year={element.year}
+              roles = {element.roles}
+            />
+          ))
+        ) : (
+          <p>No projects found</p>
+        )}
       </div>
     </>
   );
 };
 
-const YearDashBoard = () => {
+// YearDashBoard component to handle year selection
+const YearDashBoard = ({ setYear }) => {
   const [isDashboardOpen, setIsDashboardOpen] = useState(false);
 
   const toggleDashboard = () => {
     setIsDashboardOpen(!isDashboardOpen);
+  };
+
+  // Store selected year in parent Home component
+  const storeYear = (selectedYear) => {
+    setYear(selectedYear); // Set the selected year in the Home component
+    setIsDashboardOpen(false); // Close the dashboard after selection
   };
 
   // Close dashboard when clicking outside
@@ -87,11 +136,12 @@ const YearDashBoard = () => {
           className="dashboard absolute top-full mt-2 w-40 bg-slate-600 p-4 shadow-lg mr-96"
           onClick={(e) => e.stopPropagation()} // Prevent clicks inside the dashboard from closing it
         >
-          <div className="flex justify-center gap-10 w-auto">
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-            <div>4</div>
+          <div className="flex flex-col justify-center gap-10 w-auto">
+            <div onClick={() => storeYear('1')}>1</div>
+            <div onClick={() => storeYear('2')}>2</div>
+            <div onClick={() => storeYear('3')}>3</div>
+            <div onClick={() => storeYear('4')}>4</div>
+            <div onClick={() => storeYear('All')}>All</div>
           </div>
         </div>
       )}
