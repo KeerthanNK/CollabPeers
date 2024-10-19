@@ -64,8 +64,8 @@ const Home = () => {
 
       <div className="mt-10 z-0">
         {/* Display the selected college and year */}
-        <h3>Showing the projects of: {searchedCollege || "All Colleges"}</h3>
-        <h4>Selected Year: {year || "All Years"}</h4>
+        <h3 className='sticky top-[180px] z-50'>selected college: {searchedCollege || "All Colleges"}</h3>
+        <h4 className='sticky top-[200px] z-50'>Selected Year: {year || "All Years"}</h4>
         {loading && <p>Loading...</p>}
         {error && <p>Error: {error}</p>}
         {!loading && !error && filteredData.length > 0 ? (
@@ -136,7 +136,7 @@ const YearDashBoard = ({ setYear }) => {
           className="dashboard absolute top-full mt-2 w-40 bg-slate-600 p-4 shadow-lg mr-96"
           onClick={(e) => e.stopPropagation()} // Prevent clicks inside the dashboard from closing it
         >
-          <div className="flex flex-col justify-center gap-10 w-auto">
+          <div className="flex flex-row justify-between  w-auto">
             <div onClick={() => storeYear('1')}>1</div>
             <div onClick={() => storeYear('2')}>2</div>
             <div onClick={() => storeYear('3')}>3</div>
@@ -150,3 +150,4 @@ const YearDashBoard = ({ setYear }) => {
 };
 
 export default Home;
+
