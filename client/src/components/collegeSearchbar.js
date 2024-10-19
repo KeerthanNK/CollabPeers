@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 // Sample college data (replace this with actual data or fetch from API)
 const colleges = [
-  "AIT",
   "Sardar Vallabhbhai National Institute of Technology",
   "Sathyabama Institute of Science and Technology",
   "Sikkim Manipal Institute of Technology",
@@ -14,7 +13,7 @@ const colleges = [
 ];
 
 const CollegeSearchBar = ({ searchedCollege, setSearchedCollege }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState([]);
 
   // Handle change in search input
@@ -40,8 +39,8 @@ const CollegeSearchBar = ({ searchedCollege, setSearchedCollege }) => {
 
   // Handle search button click (update searchedCollege in parent component)
   const handleSearchClick = () => {
-    setSearchedCollege(searchTerm);  // Update the state in Home component
-    setSearchTerm('');
+    setSearchedCollege(searchTerm); // Update the state in Home component
+    setSearchTerm("");
   };
 
   return (
