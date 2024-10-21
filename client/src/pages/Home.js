@@ -32,7 +32,7 @@ const Home = () => {
 
   const data = users.getAll || [];
 
-  // console.log('Data from API:', data);
+  console.log('Data from API:', data);
 
   const filteredData = data.filter((element) => {
     const matchesCollege =
@@ -93,6 +93,7 @@ const Home = () => {
               expire_date={element.deadline}
               year={element.year}
               roles={element.roles}
+              technology={element.technology}
             />
           ))
         ) : (

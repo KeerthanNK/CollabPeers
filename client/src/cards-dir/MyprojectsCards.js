@@ -56,6 +56,10 @@ const MyprojectCards = (props) => {
             <div>Roles : </div>
             <div className='flex ml-2'><Skills roles={props.roles} /></div>
           </div>
+          <div className='flex'>
+            <div>Technologies:</div>
+            <div className='flex ml-2'><Technologies technology={props.technology} /></div>
+          </div>
         </div>
         <div className='flex flex-row justify-between gap-3'>
           <div><button onClick={handleEdit}>Edit</button></div>
@@ -75,6 +79,20 @@ const Skills = (props) => {
           {element}
         </div>
       ))}
+    </div>
+  );
+};
+const Technologies = (props) => {
+  const data = props.technology;
+  return (
+    <div className='flex flex-row gap-4'>
+      {
+        data.map((element, index) => (
+          <div key={index}>
+            {element}
+          </div>
+        ))
+      }
     </div>
   );
 };

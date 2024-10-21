@@ -57,6 +57,7 @@ const MyProjects = () => {
             slots={element.availableSlots} 
             roles={element.roles}
             id = {element._id}
+            technology = {element.technology}
           />
         ))
       ) : (
