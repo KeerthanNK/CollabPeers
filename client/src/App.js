@@ -6,7 +6,7 @@ import Signin from "./pages/login";
 import MyProjects from "./pages/myProjects";
 import SavedProjects from "./pages/savedProjects";
 import ProjectForm from "./pages/newProjects";
-import NewProjects from "./pages/newProjects";
+//import NewProjects from "./pages/newProjects";
 
 import ProtectedRoutes from "./utils/ProtectedRoutes";
 

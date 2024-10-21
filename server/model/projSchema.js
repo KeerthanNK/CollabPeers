@@ -16,45 +16,6 @@ const projSchema = new mongoose.Schema(
     },
     technology: {
       type: [String],
-      enum: [
-        "design",
-        "figma",
-        "web app",
-        "mobile",
-        "pwa",
-        "frontend",
-        "backend",
-        "DevOps",
-        "AI",
-        "machine learning",
-        "databases",
-        "cloud",
-        "API",
-        "full-stack",
-        "GPT-powered",
-        "test",
-        "tech",
-        "html,css",
-        "javascript",
-        "typescript",
-        "node.js",
-        "react",
-        "angular",
-        "vue.js",
-        "graphql",
-        "docker",
-        "kubernetes",
-        "aws",
-        "azure",
-        "firebase",
-        "mongodb",
-        "sql",
-        "svg",
-        "dev",
-        "gamedev",
-        "informatique",
-        "Save project",
-      ],
       required: true,
     },
     collegename: {
@@ -67,14 +28,6 @@ const projSchema = new mongoose.Schema(
     },
     roles: {
       type: [String],
-      enum: [
-        "Backend Developer",
-        "Frontend Developer",
-        "UI/UX Developer",
-        "ML Developer",
-        "Data Scientist",
-        "DevOps Engineer",
-      ],
       required: true,
     },
     email: {
@@ -82,12 +35,14 @@ const projSchema = new mongoose.Schema(
       required: true,
     },
     deadline: {
-      type: String,
-      requierd: true,
+      type: Date,
+      required: true,
     },
   },
   { timestamps: true }
 );
 
-const Proj = mongoose.model("project", projSchema);
+projSchema.index({ deadline: 1 }, { expireAfterSeconds: 0 });
+
+const Proj = mongoose.model("Project", projSchema);
 export default Proj;

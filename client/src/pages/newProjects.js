@@ -88,7 +88,6 @@ const ProjectForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Get the token from localStorage
       const token = localStorage.getItem("token");
 
       if (!token) {
@@ -96,10 +95,19 @@ const ProjectForm = () => {
         return;
       }
 
-      // No need to join technology and roles, send them as arrays
+      // Convert the deadline to a Date object
+      const deadlineDate = new Date(formData.deadline);
+
+      // Prepare the data to send
+      const projectData = {
+        ...formData,
+        availableSlots: Number(formData.availableSlots), // Ensure it's a number
+        deadline: deadlineDate, // Use the Date object here
+      };
+
       const response = await axios.post(
         "http://localhost:8000/api/project/create",
-        formData,
+        projectData,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -116,8 +124,10 @@ const ProjectForm = () => {
         roles: [],
         deadline: "",
       });
+      alert("Project submitted successfully!");
     } catch (error) {
       console.error("There was an error submitting the project:", error);
+      alert("Error submitting project. Please try again.");
     }
   };
 
