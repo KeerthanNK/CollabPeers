@@ -15,7 +15,7 @@ const Cards = (props) => {
           </div>
         </div>
         <div className='flex flex-col justify-between'>
-          <div>Save</div>
+          <div><button>Save</button></div>
           <div>Expires on : {props.expire_date}</div>
         </div>
       </div>

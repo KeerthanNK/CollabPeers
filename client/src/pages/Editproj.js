@@ -1,26 +1,19 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 
-const Editproj = (props) => {
+const Editproj = () => {
+  const location = useLocation();
+  const { project_id, project_name, description, availableSlots, technology, roles, deadline } = location.state || {};
   const [formData, setFormData] = useState({
-    projectname: "",
-    description: "",
-    availableSlots: "",
-    technology: [],
-    roles: [],
-    deadline: "",
+    projectname: project_name || "",
+    description: description || "",
+    availableSlots: availableSlots || "",
+    technology: technology || [],
+    roles: roles || [],
+    deadline: deadline || "",
   });
-  useEffect(() => {
-    setFormData({
-      projectname: props.project_name || "",
-      description: props.description || "",
-      availableSlots: props.availableSlots || "",
-      technology: props.technology || [],
-      roles: props.roles || [],
-      deadline: props.deadline || "",
-    });
-  }, [props]);
-  const technologies = [
+    const technologies = [
     "design",
     "figma",
     "web app",
@@ -59,7 +52,7 @@ const Editproj = (props) => {
     "informatique",
   ];
 
-  const roles = [
+  const userroles = [
     "Backend Developer",
     "Frontend Developer",
     "UI/UX Developer",
@@ -94,10 +87,11 @@ const Editproj = (props) => {
     });
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    alert("Project ubdated successfully please go back : ");
     try {
-      // Get the token from localStorage
       const token = localStorage.getItem("token");
 
       if (!token) {
@@ -105,9 +99,9 @@ const Editproj = (props) => {
         return;
       }
 
-      // No need to join technology and roles, send them as arrays
-      const response = await axios.post(
-        "http://localhost:8000/api/project/create",
+      // Include the project ID when sending the data
+      const response = await axios.put(
+        `http://localhost:8000/api/project/update/${project_id}`,
         formData,
         {
           headers: {
@@ -115,25 +109,16 @@ const Editproj = (props) => {
           },
         }
       );
-    
-      console.log("Project submitted successfully:", response.data);
-      setFormData({
-        projectname: "",
-        description: "",
-        availableSlots: "",
-        technology: [],
-        roles: [],
-        deadline: "",
-      });
+      console.log("Project updated successfully:", response.data);
     } catch (error) {
-      console.error("There was an error submitting the project:", error);
+      console.error("There was an error updating the project:", error);
     }
   };
 
   return (
     <div className="max-w-2xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
       <h2 className="text-2xl font-bold mb-6 text-center">
-       Edit Project
+        Ubdate the project
       </h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
@@ -202,7 +187,7 @@ const Editproj = (props) => {
             className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="">Select Roles</option>
-            {roles.map((role) => (
+            {userroles.map((role) => (
               <option key={role} value={role}>
                 {role}
               </option>
@@ -239,7 +224,7 @@ const Editproj = (props) => {
           type="submit"
           className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600"
         >
-          Save Edit
+         save changes
         </button>
       </form>
     </div>
