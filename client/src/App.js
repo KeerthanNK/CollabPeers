@@ -6,10 +6,9 @@ import Signin from "./pages/login";
 import MyProjects from "./pages/myProjects";
 import SavedProjects from "./pages/savedProjects";
 import ProjectForm from "./pages/newProjects";
-//import NewProjects from "./pages/newProjects";
-
+import NewProjects from "./pages/newProjects";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
-
+import Editproj from "./pages/Editproj"
 export default function App() {
   return (
     <Router>
@@ -48,6 +47,14 @@ export default function App() {
             element={
               <ProtectedRoutes>
                 <SavedProjects />
+              </ProtectedRoutes>
+            }
+          />
+                    <Route
+            path="/edit-project"
+            element={
+              <ProtectedRoutes>
+                <Editproj />
               </ProtectedRoutes>
             }
           />
