@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons"; // Import user icon
 
 const Header = () => {
   const [isDashboardOpen, setIsDashboardOpen] = useState(false);
@@ -53,7 +55,7 @@ const Header = () => {
         </a>
       </div>
 
-      {/* Dashboard Dropdown */}
+      {/* Dashboard Dropdown with Profile Icon */}
       <div
         className="relative hover:cursor-pointer text-gray-700 font-medium"
         onClick={(e) => {
@@ -61,7 +63,9 @@ const Header = () => {
           toggleDashboard();
         }}
       >
-        click
+        {/* Profile Icon */}
+        <FontAwesomeIcon icon={faUserCircle} size="2x" />
+
         {isDashboardOpen && (
           <div
             className="dashboard absolute right-0 top-full mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-50"
