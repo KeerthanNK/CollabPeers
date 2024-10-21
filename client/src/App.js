@@ -3,11 +3,10 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Signup from "./pages/signup";
 import Signin from "./pages/login";
-import Header from "./components/Header";
-import myProjects from "./pages/myProjects";
-import savedProjects from "./pages/savedProjects";
+import MyProjects from "./pages/myProjects";
+import SavedProjects from "./pages/savedProjects";
 import ProjectForm from "./pages/newProjects";
-import newProjects from "./pages/newProjects";
+import NewProjects from "./pages/newProjects";
 
 import ProtectedRoutes from "./utils/ProtectedRoutes";
 
@@ -20,13 +19,38 @@ export default function App() {
           <Route path="/login" element={<Signin />} />
 
           {/* Protected routes, only accessible when logged in */}
-          <Route element={<ProtectedRoutes />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/header" element={<Header />} />
-            <Route path="/my-projects" element={<myProjects />} />
-            <Route path="/new-project" element={<ProjectForm />} />
-            <Route path="/save" element={<savedProjects />} />
-          </Route>
+          <Route
+            path="/"
+            element={
+              <ProtectedRoutes>
+                <Home />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/my-projects"
+            element={
+              <ProtectedRoutes>
+                <MyProjects />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/new-project"
+            element={
+              <ProtectedRoutes>
+                <ProjectForm />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/save"
+            element={
+              <ProtectedRoutes>
+                <SavedProjects />
+              </ProtectedRoutes>
+            }
+          />
         </Routes>
       </div>
     </Router>
