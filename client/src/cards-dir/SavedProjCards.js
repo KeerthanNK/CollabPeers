@@ -30,6 +30,8 @@ const SavedProjCards = (props) => {
   };
 
   return (
+    <>
+    <a href={`/details/${props.id}`}>
     <div className='mt-9 flex flex-col justify-center items-center'>
       <div className='flex flex-row justify-around w-[950px] border-2 border-b-slate-600'>
         <div className='flex flex-col justify-center gap-6'>
@@ -51,6 +53,8 @@ const SavedProjCards = (props) => {
         </div>
       </div>
     </div>
+    </a>
+    </>
   );
 };
 

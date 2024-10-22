@@ -163,8 +163,10 @@ const ProjectForm = () => {
           value={formData.availableSlots}
           onChange={handleChange}
           required
+          min="1" // This ensures that the value cannot be less than 1
           className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
+
 
         {/* Technology Selection */}
         <div>

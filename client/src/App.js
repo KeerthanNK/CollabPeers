@@ -10,6 +10,7 @@ import NewProjects from "./pages/newProjects";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
 import Editproj from "./pages/Editproj"
 import Landing from "./pages/Landing";
+import Details from "./pages/Details";
 export default function App() {
   return (
     <Router>
@@ -52,11 +53,19 @@ export default function App() {
               </ProtectedRoutes>
             }
           />
-                    <Route
+            <Route
             path="/edit-project"
             element={
               <ProtectedRoutes>
                 <Editproj />
+              </ProtectedRoutes>
+            }
+          />
+            <Route
+            path="/details/:id"
+            element={
+              <ProtectedRoutes>
+                <Details />
               </ProtectedRoutes>
             }
           />
