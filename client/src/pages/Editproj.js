@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 const Editproj = () => {
+  const navigate =  useNavigate();
   const location = useLocation();
   const { project_id, project_name, description, availableSlots, technology, roles, deadline } = location.state || {};
   const [formData, setFormData] = useState({
@@ -90,7 +91,7 @@ const Editproj = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Project ubdated successfully please go back : ");
+    alert("Project ubdated successfully ");
     try {
       const token = localStorage.getItem("token");
 
@@ -110,6 +111,7 @@ const Editproj = () => {
         }
       );
       console.log("Project updated successfully:", response.data);
+      navigate("/my-projects");
     } catch (error) {
       console.error("There was an error updating the project:", error);
     }

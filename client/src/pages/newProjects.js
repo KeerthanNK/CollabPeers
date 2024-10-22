@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const ProjectForm = () => {
   const [formData, setFormData] = useState({
@@ -10,7 +11,7 @@ const ProjectForm = () => {
     roles: [],
     deadline: "",
   });
-
+  const navigate = useNavigate();
   const technologies = [
     "design",
     "figma",
@@ -125,6 +126,7 @@ const ProjectForm = () => {
         deadline: "",
       });
       alert("Project submitted successfully!");
+      navigate("/my-projects");
     } catch (error) {
       console.error("There was an error submitting the project:", error);
       alert("Error submitting project. Please try again.");

@@ -36,12 +36,12 @@ const Header = () => {
     <nav className="sticky top-0 z-40 flex justify-between px-8 items-center bg-slate-200 h-16 shadow-md">
       {/* Logo Section */}
       <div className="text-xl font-bold text-gray-800 hover:cursor-pointer hover:underline">
-        <a href="/">Logo</a>
+        <a href="/home">Logo</a>
       </div>
 
       {/* Navigation Links */}
       <div className="flex space-x-8 text-gray-700 font-medium">
-        <a href="/" className="hover:text-blue-500 hover:underline">
+        <a href="/home" className="hover:text-blue-500 hover:underline">
           Projects
         </a>
         <a href="/my-projects" className="hover:text-blue-500 hover:underline">
