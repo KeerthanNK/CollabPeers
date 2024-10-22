@@ -7,7 +7,11 @@ import {
   getUserProject,
   UpdatePost,
 } from "../controller/projController.js";
-import { getAllsaved, saveProject } from "../controller/savedController.js";
+import {
+  deleteSavedProject,
+  getAllsaved,
+  saveProject,
+} from "../controller/savedController.js";
 
 const router = express.Router();
 
@@ -23,7 +27,9 @@ router.put("/project/update/:id", UpdatePost);
 
 router.delete("/project/delete/:id", DeletePost);
 
-router.post("/project/save", saveProject);
+router.post("/project/save/:id", saveProject);
+
+router.delete("/project/unsave/:id", deleteSavedProject);
 
 router.get("/project/savedproject", getAllsaved);
 
