@@ -9,6 +9,7 @@ import ProjectForm from "./pages/newProjects";
 import NewProjects from "./pages/newProjects";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
 import Editproj from "./pages/Editproj"
+import Landing from "./pages/Landing";
 export default function App() {
   return (
     <Router>
@@ -16,10 +17,11 @@ export default function App() {
         <Routes>
           <Route path="/register" element={<Signup />} />
           <Route path="/login" element={<Signin />} />
+          <Route path="/" element={<Landing />} />
 
           {/* Protected routes, only accessible when logged in */}
           <Route
-            path="/"
+            path="/home"
             element={
               <ProtectedRoutes>
                 <Home />

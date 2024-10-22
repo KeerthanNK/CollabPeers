@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import Cards from "../cards-dir/cards";
 import axios from "axios";
 import CollegeSearchBar from "../components/collegeSearchbar";
-
 const Home = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -53,7 +52,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="pt-6 sticky top-[80px] z-45 bg-white flex justify-center gap-48 items-center py-4 shadow-md">
+      <div className="sticky top-[60px] z-45 bg-white flex justify-center gap-48 items-center py-4 shadow-md">
         <div>
           {/* Pass setYear to YearDashBoard */}
           <YearDashBoard setYear={setYear} />
