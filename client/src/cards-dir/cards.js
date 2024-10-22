@@ -13,9 +13,13 @@ const Cards = (props) => {
             <div>Roles : </div>
             <div className='flex ml-2'><Skills roles={props.roles} /></div>
           </div>
+          <div className='flex'>
+            <div>Technologies:</div>
+            <div className='flex ml-2'><Technologies technology={props.technology} /></div>
+          </div>
         </div>
         <div className='flex flex-col justify-between'>
-          <div>Save</div>
+          <div><button>Save</button></div>
           <div>Expires on : {props.expire_date}</div>
         </div>
       </div>
@@ -25,6 +29,20 @@ const Cards = (props) => {
 
 const Skills = (props) => {
   const data = props.roles;
+  return (
+    <div className='flex flex-row gap-4'>
+      {
+        data.map((element, index) => (
+          <div key={index}>
+            {element}
+          </div>
+        ))
+      }
+    </div>
+  );
+};
+const Technologies = (props) => {
+  const data = props.technology;
   return (
     <div className='flex flex-row gap-4'>
       {
