@@ -171,10 +171,32 @@ export const DeletePost = async (req, res) => {
     console.log(userId);
 
     const deleteddata = await Proj.findByIdAndDelete(userId);
+
+    if (!deleteddata) {
+      res.status(200).send({ msg: "Project not found" });
+    }
+
+    await User.updateMany(
+      { savedProjects: projectId },
+      { $pull: { savedProjects: projectId } }
+    );
+
     res
       .status(200)
       .json({ msg: "Project deleted successfully", deletedData: deleteddata });
   } catch (err) {
     res.status(500).send({ msg: err });
+  }
+};
+
+export const getSingleproj = async (req, res) => {
+  try {
+    const userId = req.params.id;
+
+    const data = await Proj.findById(userId);
+
+    res.status(200).send({ msg: "Project fetched successfully", data });
+  } catch (err) {
+    res.status(500).send({ msg: "Internal server error" });
   }
 };

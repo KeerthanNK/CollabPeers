@@ -4,6 +4,7 @@ import {
   DeletePost,
   filterData,
   getAllProjects,
+  getSingleproj,
   getUserProject,
   UpdatePost,
 } from "../controller/projController.js";
@@ -32,5 +33,7 @@ router.post("/project/save/:id", saveProject);
 router.delete("/project/unsave/:id", deleteSavedProject);
 
 router.get("/project/savedproject", getAllsaved);
+
+router.get("/project/user/:id", getSingleproj);
 
 export { router as projRouter };
