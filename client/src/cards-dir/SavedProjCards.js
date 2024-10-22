@@ -1,29 +1,29 @@
 import React from 'react';
 import axios from 'axios';
 
-const Cards = (props) => {
-  const saveProject = async () => {
+const SavedProjCards = (props) => {
+  const unsaveProject = async () => {
     try {
       const token = localStorage.getItem("token");
       if (!token) {
         console.log("Token not found");
         return;
       }
-      
-      // Fixing Axios request
-      const response = await axios.post(
-        `http://localhost:8000/api/project/save/${props.id}`, // Fixed template literal syntax
-        {}, // You can send request body here if needed
+
+      const response = await axios.delete(
+        `http://localhost:8000/api/project/unsave/${props.id}`,
         {
           headers: {
-            Authorization: `Bearer ${token}`, // Fixed Authorization header
-          }
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
+
+      console.log("Project unsaved successfully", response.data);
+      alert("Unsaved successfully");
       
-      console.log("Project saved successfully", response.data);
-      alert("Saved successfully");
-      
+      // Reload the page after the alert
+      window.location.reload();
     } catch (err) {
       console.log("Error:", err);
     }
@@ -33,22 +33,21 @@ const Cards = (props) => {
     <div className='mt-9 flex flex-col justify-center items-center'>
       <div className='flex flex-row justify-around w-[950px] border-2 border-b-slate-600'>
         <div className='flex flex-col justify-center gap-6'>
-          <div>College_name: {props.college_name}</div>
-          <div>Project_name: {props.Project_name}</div>
+          <div>College Name: {props.college}</div>
+          <div>Project Name: {props.project}</div>
           <div>YEAR: {props.year}</div>
-          <div>Available Slots: {props.availableSlots}</div>
+          <div>Available Slots: {props.slots}</div>
           <div className='flex'>
             <div>Roles: </div>
             <div className='flex ml-2'><Skills roles={props.roles} /></div>
           </div>
           <div className='flex'>
-            <div>Technologies: </div>
+            <div>Technologies:</div>
             <div className='flex ml-2'><Technologies technology={props.technology} /></div>
           </div>
         </div>
-        <div className='flex flex-col justify-between'>
-          <div><button onClick={saveProject}>Save</button></div>
-          <div>Expires on: {props.expire_date}</div>
+        <div className='flex flex-row justify-between gap-3'>
+          <div><button onClick={unsaveProject}>Unsave</button></div>
         </div>
       </div>
     </div>
@@ -81,4 +80,4 @@ const Technologies = (props) => {
   );
 };
 
-export default Cards;
+export default SavedProjCards;

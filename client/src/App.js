@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import Signup from "./pages/signup";
 import Signin from "./pages/login";
 import MyProjects from "./pages/myProjects";
-import SavedProjects from "./pages/savedProjects";
+import SavedProj from "./pages/SavedProj";
 import ProjectForm from "./pages/newProjects";
 import NewProjects from "./pages/newProjects";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
@@ -46,7 +46,7 @@ export default function App() {
             path="/save"
             element={
               <ProtectedRoutes>
-                <SavedProjects />
+                <SavedProj />
               </ProtectedRoutes>
             }
           />

@@ -39,6 +39,7 @@ const MyprojectCards = (props) => {
   
       console.log("Project deleted successfully:", response.data);
       alert("Project deleted successfully");
+      window.location.reload();
     } catch (error) {
       console.error("There was an error deleting the project:", error);
     }
