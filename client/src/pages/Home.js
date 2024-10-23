@@ -28,10 +28,10 @@ const Home = () => {
 
     fetchUsers();
   }, []);
-
+  //console.log('Data from API:', users.getAll);
   const data = users.getAll || [];
 
- // console.log('Data from API:', data);
+  //console.log('Data from API:', data);
 
   const filteredData = data.filter((element) => {
     const matchesCollege =
@@ -74,10 +74,10 @@ const Home = () => {
 
       <div className="mt-10 z-0">
         {/* Display the selected college and year */}
-        <h3 className="sticky top-[180px] z-50">
+        <h3 className="sticky top-[180px] z-50 text-green-400">
           selected college: {searchedCollege || "All Colleges"}
         </h3>
-        <h4 className="sticky top-[200px] z-50">
+        <h4 className="sticky top-[200px] z-50 text-green-400">
           Selected Year: {year || "All Years"}
         </h4>
         {loading && <p>Loading...</p>}
@@ -148,7 +148,7 @@ const YearDashBoard = ({ setYear }) => {
       Select Year
       {isDashboardOpen && (
         <div
-          className="dashboard absolute top-full mt-2 w-40 bg-slate-600 p-4 shadow-lg mr-96"
+          className="dashboard absolute top-full mt-2 w-40 p-4 shadow-lg mr-96  bg-slate-50 rounded-sm"
           onClick={(e) => e.stopPropagation()} // Prevent clicks inside the dashboard from closing it
         >
           <div className="flex flex-row justify-between  w-auto">

@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const Cards = (props) => {
   const saveProject = async () => {
@@ -9,64 +10,87 @@ const Cards = (props) => {
         console.log("Token not found");
         return;
       }
-      
-      // Fixing Axios request
+
       const response = await axios.post(
-        `http://localhost:8000/api/project/save/${props.id}`, // Fixed template literal syntax
-        {}, // You can send request body here if needed
+        `http://localhost:8000/api/project/save/${props.id}`,
+        {},
         {
           headers: {
-            Authorization: `Bearer ${token}`, // Fixed Authorization header
+            Authorization: `Bearer ${token}`,
           }
         }
       );
-      
+
       console.log("Project saved successfully", response.data);
       alert("Saved successfully");
-      
+
     } catch (err) {
       console.log("Error:", err);
     }
   };
-
+  const navigate = useNavigate();
+  const showDetails = () =>{
+    navigate(`/details/${props.id}`);
+  }
   return (
-    <>
-    <a href={`/details/${props.id}`}>
-    <div className='mt-9 flex flex-col justify-center items-center'>
-      <div className='flex flex-row justify-around w-[950px] border-2 border-b-slate-600'>
-        <div className='flex flex-col justify-center gap-6'>
-          <div>College_name: {props.college_name}</div>
-          <div>Project_name: {props.Project_name}</div>
-          <div>YEAR: {props.year}</div>
-          <div>Available Slots: {props.availableSlots}</div>
-          <div className='flex'>
-            <div>Roles: </div>
-            <div className='flex ml-2'><Skills roles={props.roles} /></div>
+      <div className="mt-9 flex flex-col items-center">
+        <div className="bg-white shadow-lg rounded-lg w-[950px] border border-gray-300 hover:shadow-xl transition-shadow duration-300">
+          <div className="flex flex-row justify-between p-6">
+            <div className="flex flex-col gap-4">
+              <div className="text-lg font-semibold text-gray-700">
+                College: <span className="text-gray-900">{props.college_name}</span>
+              </div>
+              <div className="text-lg font-semibold text-gray-700">
+                Project: <span className="text-gray-900">{props.Project_name}</span>
+              </div>
+              <div className="text-md text-gray-500">
+                Year: <span className="text-gray-700">{props.year}</span>
+              </div>
+              <div className="text-md text-gray-500">
+                Available Slots: <span className="text-gray-700">{props.availableSlots}</span>
+              </div>
+              <div className="text-md text-gray-500 flex items-center">
+                Roles: <Skills roles={props.roles} />
+              </div>
+              <div className="text-md text-gray-500 flex items-center">
+                Technologies: <Technologies technology={props.technology} />
+              </div>
+            </div>
+            <div className="flex flex-col justify-between items-end">
+              <button 
+                onClick={saveProject} 
+                className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition-colors"
+              >
+                Save Project
+              </button>
+              <button 
+                onClick={showDetails} 
+                className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition-colors"
+              >
+                Show details
+              </button>
+              <div className="text-sm text-gray-500 mt-4">
+                Expires on: <span className="text-gray-700">{props.expire_date}</span>
+              </div>
+            </div>
           </div>
-          <div className='flex'>
-            <div>Technologies: </div>
-            <div className='flex ml-2'><Technologies technology={props.technology} /></div>
-          </div>
-        </div>
-        <div className='flex flex-col justify-between'>
-          <div><button onClick={saveProject}>Save</button></div>
-          <div>Expires on: {props.expire_date}</div>
         </div>
       </div>
-    </div>
-    </a>
-    </>
+
   );
 };
 
 const Skills = (props) => {
   const data = props.roles;
   return (
-    <div className='flex flex-row gap-4'>
-      {data.map((element, index) => (
-        <div key={index}>
-          {element}
-        </div>
+    <div className="ml-2 flex flex-row gap-2">
+      {data.map((role, index) => (
+        <span 
+          key={index} 
+          className="bg-gray-200 text-gray-700 px-2 py-1 rounded-md text-sm"
+        >
+          {role}
+        </span>
       ))}
     </div>
   );
@@ -75,11 +99,14 @@ const Skills = (props) => {
 const Technologies = (props) => {
   const data = props.technology;
   return (
-    <div className='flex flex-row gap-4'>
-      {data.map((element, index) => (
-        <div key={index}>
-          {element}
-        </div>
+    <div className="ml-2 flex flex-row gap-2">
+      {data.map((tech, index) => (
+        <span 
+          key={index} 
+          className="bg-gray-200 text-gray-700 px-2 py-1 rounded-md text-sm"
+        >
+          {tech}
+        </span>
       ))}
     </div>
   );

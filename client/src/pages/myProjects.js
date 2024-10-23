@@ -44,7 +44,6 @@ const MyProjects = () => {
   return (
     <>
       {loading && <p>Loading...</p>}
-      {error && <p>Error: {error}</p>}
       
       {!loading && !error && myProject_data.length > 0 ? (
         myProject_data.map((element, index) => (
@@ -61,7 +60,18 @@ const MyProjects = () => {
           />
         ))
       ) : (
-        <p>No projects found</p>
+        <div className="flex items-center justify-center h-screen bg-gray-100">
+          <div className="text-center">
+            <h1 className="text-6xl font-bold text-gray-800">No  Projects found</h1>
+            <p className="mt-4 text-lg text-gray-600">It looks like you haven't added any projects yet.</p>
+            <a 
+              href="/new-project" 
+              className="mt-6 inline-block bg-blue-500 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-600 transition-colors"
+            >
+              Add projects
+            </a>
+          </div>
+        </div>
       )}
     </>
   );

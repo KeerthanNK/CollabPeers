@@ -150,30 +150,30 @@ const CollegeSearchBar = ({ searchedCollege, setSearchedCollege }) => {
   };
 
   return (
-    <div className="relative w-72">
-      <div className="flex items-center">
+    <div className="relative w-80 mx-auto">
+      <div className="flex items-center space-x-2">
         <input
           type="text"
           placeholder="Search colleges"
           value={searchTerm}
           onChange={handleInputChange}
-          className="p-2 border rounded w-[500px]"
+          className="p-3 border border-gray-300 rounded-lg w-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200"
         />
         <button
           onClick={handleSearchClick}
-          className="p-2 bg-blue-500 text-white rounded"
+          className="p-3 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 transition-colors duration-300"
         >
           Search
         </button>
       </div>
 
       {suggestions.length > 0 && (
-        <ul className="absolute w-full mt-2 bg-white border border-gray-300 rounded-md z-10">
+        <ul className="absolute w-full mt-2 bg-white border border-gray-300 rounded-lg shadow-lg z-10">
           {suggestions.map((college, index) => (
             <li
               key={index}
               onClick={() => handleSuggestionClick(college)}
-              className="p-2 cursor-pointer hover:bg-gray-100 border-b last:border-b-0"
+              className="p-3 cursor-pointer hover:bg-gray-100 border-b last:border-b-0 transition-colors"
             >
               {college}
             </li>
