@@ -11,6 +11,7 @@ import ProtectedRoutes from "./utils/ProtectedRoutes";
 import Editproj from "./pages/Editproj"
 import Landing from "./pages/Landing";
 import Details from "./pages/Details";
+import Chat from "./pages/Chat";
 export default function App() {
   return (
     <Router>
@@ -66,6 +67,14 @@ export default function App() {
             element={
               <ProtectedRoutes>
                 <Details />
+              </ProtectedRoutes>
+            }
+          />
+            <Route
+            path="/chat"
+            element={
+              <ProtectedRoutes>
+                <Chat />
               </ProtectedRoutes>
             }
           />

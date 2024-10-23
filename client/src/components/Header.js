@@ -53,6 +53,9 @@ const Header = () => {
         <a href="/save" className="hover:text-blue-500 hover:underline">
           SavedProjects
         </a>
+        <a href="/chat" className="hover:text-blue-500 hover:underline">
+          chat
+        </a>
       </div>
 
       {/* Dashboard Dropdown with Profile Icon */}
