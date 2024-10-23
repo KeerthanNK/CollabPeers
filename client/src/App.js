@@ -1,5 +1,10 @@
 import "./index.css";
-import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
 import Home from "./pages/Home";
 import Signup from "./pages/signup";
 import Signin from "./pages/login";
@@ -10,12 +15,12 @@ import NewProjects from "./pages/newProjects";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
 import PublicRoute from "./utils/PublicRoute";
 import Editproj from "./pages/Editproj";
-import Landing from "./pages/Landing";
 import Details from "./pages/Details";
 import Chat from "./pages/Chat";
 import Error from "./pages/Error";
 import Header from "./components/Header"; // Assuming you have a Header component
 import { AuthProvider } from "./context/AuthContext"; // Import the AuthProvider
+import Landing from "./pages/Landing";
 
 function AppContent() {
   const location = useLocation();
@@ -113,7 +118,9 @@ function AppContent() {
 
 export default function App() {
   return (
-    <AuthProvider> {/* Wrap your app with AuthProvider */}
+    <AuthProvider>
+      {" "}
+      {/* Wrap your app with AuthProvider */}
       <Router>
         <AppContent />
       </Router>
