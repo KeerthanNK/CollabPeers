@@ -7,7 +7,7 @@ const Error = () => {
       <h1 className="text-6xl font-bold text-gray-800">404 ERROR</h1>
       <p className="mt-4 text-lg text-gray-600">This page doesnot exist</p>
       <a 
-        href="/home" 
+        href="/" 
         className="mt-6 inline-block bg-blue-500 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-600 transition-colors"
       >
         Go back

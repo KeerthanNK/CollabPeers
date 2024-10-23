@@ -7,7 +7,7 @@ const Header = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    window.location.href = "/login";
+    window.location.href = "/";
   };
 
   const toggleDashboard = () => {

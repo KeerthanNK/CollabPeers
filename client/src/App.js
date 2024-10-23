@@ -21,7 +21,7 @@ function AppContent() {
   const location = useLocation();
 
   // List of routes where you don't want the Header to appear
-  const hideHeaderRoutes = ["/login", "/register", "/"];
+  const hideHeaderRoutes = ["/login", "/register", "/", "*", "/error"];
 
   return (
     <>
@@ -104,6 +104,7 @@ function AppContent() {
             </ProtectedRoutes>
           }
         />
+        {/* Error route */}
         <Route path="*" element={<Error />} />
       </Routes>
     </>

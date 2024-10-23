@@ -188,11 +188,13 @@ const Signup = () => {
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
+    
       <form
         onSubmit={handleSubmit}
         className="bg-white shadow-md rounded-lg p-8 w-full max-w-lg"
       >
-        <h2 className="text-2xl font-semibold text-gray-700 mb-6 text-center">
+      
+        <h2 className="mt-10 text-2xl font-semibold text-gray-700 mb-6 text-center">
           Sign Up
         </h2>
 
@@ -302,14 +304,23 @@ const Signup = () => {
             required
           />
         </div>
-
+          <div>
+          <p className="text-gray-600 text-sm text-center">
+            Already have an account?
+            <a href="/login" className="text-blue-500 hover:underline">
+              Login
+            </a>
+      </p>
+          </div>
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          className="mt-4 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
         >
           Submit
         </button>
+        
       </form>
+
     </div>
   );
 };
