@@ -73,4 +73,64 @@ const authUser = async (req, res) => {
   }
 };
 
-export { registerUser, authUser };
+export const fetchoneUser = async (req,res) =>{
+   try{
+
+    const Token = req.headers.authorization?.split(" ")[1];
+    if (!Token) {
+      return res.status(401).json({ error: "No token provided" });
+    }
+
+    const decoded = jwt.verify(Token, process.env.SECRET_KEY);
+    console.log(decoded);
+    
+
+    const data = await User.findOne({email : decoded.email});
+
+    res.status(200).send(data);
+
+   
+
+   }
+   catch(err){
+      res.status(500).send({msg:"Internal servor error"+err});
+   }
+}
+
+
+export const updateUser = async (req, res) => {
+    const { email, name, collegename, year, course, password } = req.body;
+
+    if (!email) {
+        return res.status(400).json({ message: 'Email is required to update the user.' });
+    }
+
+    try {
+        // Hash the password if it's provided
+        const updateData = { name, collegename, year, course };
+        if (password) {
+            const salt = await bcrypt.genSalt(12);
+            updateData.password = await bcrypt.hash(password, salt);
+        }
+
+        const updatedUser = await User.findOneAndUpdate(
+            { email },
+            updateData,
+            { new: true, runValidators: true }
+        );
+
+        if (!updatedUser) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        return res.status(200).json({ msg: "Update successful", updatedUser });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+
+
+
+export { authUser, registerUser };
+
