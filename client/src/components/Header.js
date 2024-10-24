@@ -80,9 +80,11 @@ const Header = () => {
             >
               Logout
             </div>
+            <a href="/profile">
             <div className="px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-blue-500 cursor-pointer">
-              Delete Account
+              Profile 
             </div>
+            </a>
           </div>
         )}
       </div>

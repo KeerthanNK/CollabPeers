@@ -48,11 +48,14 @@ const SavedProj = () => {
         <div className="flex-row justify-center gap-6 mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 ">
         <a href='/home'>
         <div className='flex flex-row'>
-        <div className='flex flex-col w-[200px] h-[200px] border-solid border-2 border-indigo-600 items-center'>
-          <div className='flex-grow flex justify-center items-center'>
-            <div>Browse</div>
-          </div>
-        </div>
+        <div className="bg-white shadow-md rounded-lg border-l-4 border-indigo-600 p-6 w-[300px] h-[150px] my-4 transition-transform duration-200 hover:scale-105 relative">
+              <div className="flex-grow flex justify-center items-center">
+                {/* Adding the plus symbol icon here */}
+                <div className="text-4xl text-indigo-600">
+                  Browse
+                </div>
+              </div>
+            </div>
         </div>
         </a>
       {saves.length > 0 ? (

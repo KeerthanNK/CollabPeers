@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { MdDeleteOutline } from 'react-icons/md';
+import { FaRegEdit } from 'react-icons/fa';
+
 const MyprojectCards = (props) => {
   const navigate = useNavigate();
+  
+  const [showEditLabel, setShowEditLabel] = useState(false);
+  const [showDeleteLabel, setShowDeleteLabel] = useState(false);
 
   const handleEdit = () => {
     navigate('/edit-project', {
@@ -13,8 +19,8 @@ const MyprojectCards = (props) => {
         availableSlots: props.slots,
         roles: props.roles,
         technology: props.technology,
-        deadline: props.deadline
-      }
+        deadline: props.deadline,
+      },
     });
   };
 
@@ -43,100 +49,46 @@ const MyprojectCards = (props) => {
       console.error("There was an error deleting the project:", error);
     }
   };
-  const showDetails = () =>{
+
+  const showDetails = () => {
     navigate(`/details/${props.id}`);
-  }
-  {/* 
-           <div className="mt-9 flex flex-col items-center">
-        <div className="bg-white shadow-lg rounded-lg w-[950px] border border-gray-300 hover:shadow-xl transition-shadow duration-300">
-          <div className="flex flex-row justify-between p-6">
-            <div className="flex flex-col gap-4">
-              <div className="text-lg font-semibold text-gray-700">
-                College: <span className="text-gray-900">{props.college_name}</span>
-              </div>
-              <div className="text-lg font-semibold text-gray-700">
-                Project: <span className="text-gray-900">{props.project_name}</span>
-              </div>
-              <div className="text-md text-gray-500">
-                Year: <span className="text-gray-700">{props.year}</span>
-              </div>
-              <div className="text-md text-gray-500">
-                Available Slots: <span className="text-gray-700">{props.slots}</span>
-              </div>
-              <div className="text-md text-gray-500 flex items-center">
-                Roles: <Skills roles={props.roles} />
-              </div>
-              <div className="text-md text-gray-500 flex items-center">
-                Technologies: <Technologies technology={props.technology} />
-              </div>
+  };
+
+  return (
+    <div className="bg-white shadow-md rounded-lg border-l-4 border-indigo-600 p-6 w-[300px] my-4 transform transition-transform duration-200 hover:scale-105">
+      <div className="flex justify-end mb-4 gap-5">
+        {/* Edit Icon */}
+        <div
+          onMouseEnter={() => setShowEditLabel(true)}
+          onMouseLeave={() => setShowEditLabel(false)}
+          onClick={handleEdit}
+          className="hover:cursor-pointer flex items-center gap-1 text-blue-600 transform transition-transform duration-200 hover:scale-125 relative"
+        >
+          <FaRegEdit />
+          {showEditLabel && (
+            <div className="absolute top-[-20px] bg-gray-700 text-white text-sm p-1 rounded shadow-lg">
+              Edit
             </div>
-            <div className="flex flex-col justify-between items-end">
-              <button 
-                onClick={handleEdit} 
-                className="bg-green-500 text-white px-4 py-2 rounded-lg shadow hover:bg-green-600 transition-colors"
-              >
-                Edit
-              </button>
-              <button 
-                onClick={showDetails} 
-                className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition-colors"
-              >
-                Show details
-              </button>
-              <button 
-                onClick={deleteProject} 
-                className="bg-red-500 text-white px-4 py-2 rounded-lg shadow hover:bg-red-600 transition-colors mt-4"
-              >
-                Delete
-              </button>
+          )}
+        </div>
+        {/* Delete Icon */}
+        <div
+          onMouseEnter={() => setShowDeleteLabel(true)}
+          onMouseLeave={() => setShowDeleteLabel(false)}
+          onClick={deleteProject}
+          className="hover:cursor-pointer flex items-center gap-1 text-red-600 transform transition-transform duration-200 hover:scale-125 relative"
+        >
+          <MdDeleteOutline />
+          {showDeleteLabel && (
+            <div className="absolute top-[-20px] bg-gray-700 text-white text-sm p-1 rounded shadow-lg">
+              Delete
             </div>
-          </div>
+          )}
         </div>
       </div>
- */}
-  return (
-    <div className='flex flex-row'>
-    <div className='flex flex-col w-[200px] h-[200px] border-solid border-2 border-indigo-600'>
-      <div className='flex justify-end gap-4 '>
-        <div onClick={handleEdit} className='hover:cursor-pointer'>Edit</div>
-        <div onClick={deleteProject} className='hover:cursor-pointer'>delete</div>
+      <div onClick={showDetails} className="hover:cursor-pointer text-center items-center text-lg font-semibold text-gray-800 mb-2">
+        {props.project_name}
       </div>
-      <div onClick={showDetails} className='flex-grow flex justify-center items-center hover:cursor-pointer'>
-        <div>{props.project_name}</div>
-      </div>
-    </div>
-    </div>
-  );
-};
-
-const Skills = (props) => {
-  const data = props.roles;
-  return (
-    <div className="ml-2 flex flex-row gap-2">
-      {data.map((role, index) => (
-        <span 
-          key={index} 
-          className="bg-gray-200 text-gray-700 px-2 py-1 rounded-md text-sm"
-        >
-          {role}
-        </span>
-      ))}
-    </div>
-  );
-};
-
-const Technologies = (props) => {
-  const data = props.technology;
-  return (
-    <div className="ml-2 flex flex-row gap-2">
-      {data.map((tech, index) => (
-        <span 
-          key={index} 
-          className="bg-gray-200 text-gray-700 px-2 py-1 rounded-md text-sm"
-        >
-          {tech}
-        </span>
-      ))}
     </div>
   );
 };

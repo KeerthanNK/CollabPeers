@@ -21,7 +21,7 @@ import Error from "./pages/Error";
 import Header from "./components/Header"; // Assuming you have a Header component
 import { AuthProvider } from "./context/AuthContext"; // Import the AuthProvider
 import Landing from "./pages/Landing";
-
+import Profile from "./pages/Profile";
 
 function AppContent() {
   const location = useLocation();
@@ -108,6 +108,14 @@ function AppContent() {
           element={
             <ProtectedRoutes>
               <Chat />
+            </ProtectedRoutes>
+          }
+        />
+                <Route
+          path="/profile"
+          element={
+            <ProtectedRoutes>
+              <Profile />
             </ProtectedRoutes>
           }
         />
