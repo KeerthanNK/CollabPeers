@@ -46,7 +46,7 @@ const Cards = (props) => {
 
   return (
     <div className="mt-9 flex flex-col items-center">
-      <div className="bg-[#F5F7FA] shadow-md rounded-lg w-full max-w-[850px] border border-gray-200 hover:shadow-lg transition-shadow duration-300 p-6">
+      <div className="bg-[#F5F7FA] shadow-md rounded-lg w-full max-w-[850px] border border-gray-200 hover:shadow-indigo-600  delay-[0.15s] duration-75 transition-transform p-6">
         <div className="flex flex-col md:flex-row justify-between">
           <div className="flex flex-col gap-4">
             <div className="text-xl font-semibold text-gray-800">
