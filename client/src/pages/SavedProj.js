@@ -44,7 +44,17 @@ const SavedProj = () => {
   return (
     <>
       {loading && <p>Loading...</p>}
-      
+      <div className="flex flex-col items-center">
+        <div className="flex-row justify-center gap-6 mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 ">
+        <a href='/home'>
+        <div className='flex flex-row'>
+        <div className='flex flex-col w-[200px] h-[200px] border-solid border-2 border-indigo-600 items-center'>
+          <div className='flex-grow flex justify-center items-center'>
+            <div>Browse</div>
+          </div>
+        </div>
+        </div>
+        </a>
       {saves.length > 0 ? (
         saves.map((element, index) => (
           <SavedProjCards 
@@ -64,15 +74,11 @@ const SavedProj = () => {
             <h1 className="text-6xl font-bold text-gray-800">No Saved Projects</h1>
             <p className="mt-4 text-lg text-gray-600">It looks like you haven't saved any projects yet.</p>
             <p className="mt-2 text-lg text-gray-600">Browse projects to find one to save!</p>
-            <a 
-              href="/home" 
-              className="mt-6 inline-block bg-blue-500 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-600 transition-colors"
-            >
-              Browse Projects
-            </a>
           </div>
         </div>
       )}
+      </div>
+      </div>
     </>
   );
 };

@@ -46,8 +46,8 @@ const MyprojectCards = (props) => {
   const showDetails = () =>{
     navigate(`/details/${props.id}`);
   }
-  return (
-      <div className="mt-9 flex flex-col items-center">
+  {/* 
+           <div className="mt-9 flex flex-col items-center">
         <div className="bg-white shadow-lg rounded-lg w-[950px] border border-gray-300 hover:shadow-xl transition-shadow duration-300">
           <div className="flex flex-row justify-between p-6">
             <div className="flex flex-col gap-4">
@@ -93,6 +93,19 @@ const MyprojectCards = (props) => {
           </div>
         </div>
       </div>
+ */}
+  return (
+    <div className='flex flex-row'>
+    <div className='flex flex-col w-[200px] h-[200px] border-solid border-2 border-indigo-600'>
+      <div className='flex justify-end gap-4 '>
+        <div onClick={handleEdit} className='hover:cursor-pointer'>Edit</div>
+        <div onClick={deleteProject} className='hover:cursor-pointer'>delete</div>
+      </div>
+      <div onClick={showDetails} className='flex-grow flex justify-center items-center hover:cursor-pointer'>
+        <div>{props.project_name}</div>
+      </div>
+    </div>
+    </div>
   );
 };
 

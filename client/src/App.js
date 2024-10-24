@@ -22,6 +22,7 @@ import Header from "./components/Header"; // Assuming you have a Header componen
 import { AuthProvider } from "./context/AuthContext"; // Import the AuthProvider
 import Landing from "./pages/Landing";
 
+
 function AppContent() {
   const location = useLocation();
 
@@ -51,6 +52,7 @@ function AppContent() {
           }
         />
         <Route path="/" element={<Landing />} />
+  
 
         {/* Protected routes, only accessible when logged in */}
         <Route

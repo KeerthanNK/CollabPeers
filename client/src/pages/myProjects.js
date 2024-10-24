@@ -43,8 +43,19 @@ const MyProjects = () => {
   console.log(myProject_data);
   return (
     <>
-      {loading && <p>Loading...</p>}
-      
+       {loading && <p>Loading...</p>}
+       <div className="flex flex-col items-center">
+        <div className="flex-row justify-center gap-6 mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 ">
+          <div className='flex flex-row'>
+        <div className='flex flex-col w-[200px] h-[200px] border-solid border-2 border-indigo-600'>
+        <div className='flex justify-center gap-4'>
+            <div>Add project</div>
+        </div>
+          <div className='flex-grow flex justify-center items-center'>
+            <div>plus symbol</div>
+          </div>
+        </div>
+        </div>
       {!loading && !error && myProject_data.length > 0 ? (
         myProject_data.map((element, index) => (
           <MyProjectsCards 
@@ -64,15 +75,12 @@ const MyProjects = () => {
           <div className="text-center">
             <h1 className="text-6xl font-bold text-gray-800">No  Projects found</h1>
             <p className="mt-4 text-lg text-gray-600">It looks like you haven't added any projects yet.</p>
-            <a 
-              href="/new-project" 
-              className="mt-6 inline-block bg-blue-500 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-600 transition-colors"
-            >
-              Add projects
-            </a>
           </div>
         </div>
-      )}
+     
+      )} 
+      </div>
+      </div>
     </>
   );
 };
