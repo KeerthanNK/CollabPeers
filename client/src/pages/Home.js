@@ -52,7 +52,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="sticky top-[60px] z-45 bg-white flex justify-center gap-48 items-center py-4 shadow-md">
+      <div className="sticky top-[60px] z-48 bg-white flex justify-center gap-48 items-center py-4 shadow-md">
         <div>
           {/* Pass setYear to YearDashBoard */}
           <YearDashBoard setYear={setYear} />
@@ -65,7 +65,7 @@ const Home = () => {
           />
         </div>
         <div
-          className="hover:cursor-pointer"
+          className="hover:cursor-pointer hover:text-[#6366F1]"
           onClick={() => selectAllCol("All")}
         >
           Select all Colleges
@@ -74,10 +74,10 @@ const Home = () => {
 
       <div className="mt-10 z-0">
         {/* Display the selected college and year */}
-        <h3 className="sticky top-[180px] z-50 text-green-400">
+        <h3 className="sticky top-[180px] z-50 text-[#6366F1]">
           selected college: {searchedCollege || "All Colleges"}
         </h3>
-        <h4 className="sticky top-[200px] z-50 text-green-400">
+        <h4 className="sticky top-[200px] z-50 text-[#6366F1]">
           Selected Year: {year || "All Years"}
         </h4>
         {loading && <p>Loading...</p>}
@@ -97,7 +97,7 @@ const Home = () => {
             />
           ))
         ) : (
-          <p>No projects found</p>
+          <p className="text-[#6366F1]">No projects found</p>
         )}
       </div>
     </>
@@ -139,7 +139,7 @@ const YearDashBoard = ({ setYear }) => {
 
   return (
     <div
-      className="relative hover:cursor-pointer"
+      className="relative hover:cursor-pointer hover:text-[#6366F1] hover:underline"
       onClick={(e) => {
         e.stopPropagation(); // Prevents closing the dashboard when clicking on 'click'
         toggleDashboard();

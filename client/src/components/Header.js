@@ -41,19 +41,19 @@ const Header = () => {
 
       {/* Navigation Links */}
       <div className="flex space-x-8 text-gray-700 font-medium">
-        <a href="/home" className="hover:text-blue-500 hover:underline">
+        <a href="/home" className="hover:text-[#6366F1] hover:underline">
           Projects
         </a>
-        <a href="/my-projects" className="hover:text-blue-500 hover:underline">
+        <a href="/my-projects" className="hover:text-[#6366F1] hover:underline">
           MyProjects
         </a>
-        <a href="/new-project" className="hover:text-blue-500 hover:underline">
+        <a href="/new-project" className="hover:text-[#6366F1] hover:underline">
           NewProjects
         </a>
-        <a href="/save" className="hover:text-blue-500 hover:underline">
+        <a href="/save" className="hover:text-[#6366F1] hover:underline">
           SavedProjects
         </a>
-        <a href="/chat" className="hover:text-blue-500 hover:underline">
+        <a href="/chat" className="hover:text-[#6366F1] hover:underline">
           chat
         </a>
       </div>
