@@ -43,6 +43,7 @@ const Signin = () => {
       }
     } catch (error) {
       console.error("Error occurred during signin:", error.message);
+      window.alert("Invalid credentials");
     }
   };
 
