@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { FiSave, FiEye } from 'react-icons/fi';  // Import icons from React Icons
 
 const Cards = (props) => {
+  const [showDetailsDashboard, setShowDetailsDashboard] = useState(false);
+  const [showSaveDashboard, setShowSaveDashboard] = useState(false);
+
   const saveProject = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -42,10 +46,10 @@ const Cards = (props) => {
 
   return (
     <div className="mt-9 flex flex-col items-center">
-      <div className="bg-white shadow-lg rounded-lg w-[950px] border border-gray-300 hover:shadow-xl transition-shadow duration-300">
-        <div className="flex flex-row justify-between p-6">
+      <div className="bg-[#F5F7FA] shadow-md rounded-lg w-full max-w-[850px] border border-gray-200 hover:shadow-lg transition-shadow duration-300 p-6">
+        <div className="flex flex-col md:flex-row justify-between">
           <div className="flex flex-col gap-4">
-            <div className="text-lg font-semibold text-gray-700">
+            <div className="text-xl font-semibold text-gray-800">
               College: <span className="text-gray-900">{props.college_name}</span>
             </div>
             <div className="text-lg font-semibold text-gray-700">
@@ -57,27 +61,43 @@ const Cards = (props) => {
             <div className="text-md text-gray-500">
               Available Slots: <span className="text-gray-700">{props.availableSlots}</span>
             </div>
-            <div className="text-md text-gray-500 flex items-center">
+            <div className="text-md text-gray-500">
               Roles: <Skills roles={props.roles} />
             </div>
-            <div className="text-md text-gray-500 flex items-center">
+            <div className="text-md text-gray-500">
               Technologies: <Technologies technology={props.technology} />
             </div>
           </div>
-          <div className="flex flex-col justify-between items-end">
-            <button 
-              onClick={saveProject} 
-              className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition-colors"
-            >
-              Save Project
-            </button>
-            <button 
-              onClick={showDetails} 
-              className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition-colors"
-            >
-              Show details
-            </button>
-            <div className="text-sm text-gray-500 mt-4">
+          <div className="flex flex-col justify-between items-end mt-4 md:mt-0">
+            <div className="flex flex-row justify-center gap-6 relative">
+              {/* Show Details icon with hover functionality */}
+              <div 
+                onMouseEnter={() => setShowDetailsDashboard(true)} 
+                onMouseLeave={() => setShowDetailsDashboard(false)} 
+                className="relative cursor-pointer text-[#6366F1]"
+              >
+                <FiEye size={24} onClick={showDetails} />
+                {showDetailsDashboard && (
+                  <div className="absolute top-full mt-2 left-[-50%] bg-white p-2 shadow-lg border border-gray-200 rounded-lg ">
+                    View details
+                  </div>
+                )}
+              </div>
+              {/* Save icon with hover functionality */}
+              <div 
+                onMouseEnter={() => setShowSaveDashboard(true)} 
+                onMouseLeave={() => setShowSaveDashboard(false)} 
+                className="relative cursor-pointer text-[#4CAF50]"
+              >
+                <FiSave size={24} onClick={saveProject} />
+                {showSaveDashboard && (
+                  <div className="absolute top-full mt-2 left-[-50%] bg-white p-2 shadow-lg border border-gray-200 rounded-lg ">
+                    Save
+                  </div>
+                )}
+              </div>
+            </div>
+            <div className="text-sm text-gray-500 mt-6">
               Expires on: <span className="text-gray-700">{formatExpireDate(props.expire_date)}</span>
             </div>
           </div>
@@ -90,11 +110,11 @@ const Cards = (props) => {
 const Skills = (props) => {
   const data = props.roles;
   return (
-    <div className="ml-2 flex flex-row gap-2">
+    <div className="ml-2 flex flex-wrap gap-3 mt-2">
       {data.map((role, index) => (
         <span 
           key={index} 
-          className="bg-gray-200 text-gray-700 px-2 py-1 rounded-md text-sm"
+          className="bg-[#E0E7FF] text-gray-700 px-3 py-1 rounded-md text-sm"
         >
           {role}
         </span>
@@ -106,11 +126,11 @@ const Skills = (props) => {
 const Technologies = (props) => {
   const data = props.technology;
   return (
-    <div className="ml-2 flex flex-row gap-2">
+    <div className="ml-2 flex flex-wrap gap-3 mt-2">
       {data.map((tech, index) => (
         <span 
           key={index} 
-          className="bg-gray-200 text-gray-700 px-2 py-1 rounded-md text-sm"
+          className="bg-[#E0E7FF] text-gray-700 px-3 py-1 rounded-md text-sm"
         >
           {tech}
         </span>

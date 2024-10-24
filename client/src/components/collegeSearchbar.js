@@ -157,11 +157,11 @@ const CollegeSearchBar = ({ searchedCollege, setSearchedCollege }) => {
           placeholder="Search colleges"
           value={searchTerm}
           onChange={handleInputChange}
-          className="p-3 border border-gray-300 rounded-lg w-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200"
+          className="p-3 border  border-gray-300 rounded-lg w-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200"
         />
         <button
           onClick={handleSearchClick}
-          className="p-3 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 transition-colors duration-300"
+          className="p-3 bg-indigo-600 text-[#FFFF] rounded-lg shadow hover:bg-slate-50 hover:text-[#6366F1] transition-colors duration-300"
         >
           Search
         </button>
