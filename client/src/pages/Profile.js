@@ -10,7 +10,7 @@ const Profile = () => {
     // Fetch user data from backend
     const fetchUserData = async () => {
       try {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('authToken');
         if (!token) {
           console.log('No token found');
           return;
@@ -34,7 +34,7 @@ const Profile = () => {
 
   const handleDelete = async () => {
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('authToken');
       if (!token) {
         console.log('No token found');
         return;

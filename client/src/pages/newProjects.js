@@ -89,7 +89,7 @@ const ProjectForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("authToken");
 
       if (!token) {
         console.error("No token found");

@@ -26,7 +26,7 @@ const MyprojectCards = (props) => {
 
   const deleteProject = async () => {
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("authToken");
 
       if (!token) {
         console.error("No token found");

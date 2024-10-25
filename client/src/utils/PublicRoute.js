@@ -3,7 +3,7 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 
 const PublicRoute = ({ children }) => {
-  const isAuthenticated = localStorage.getItem("token");
+  const isAuthenticated = localStorage.getItem("authToken");
 
   if (isAuthenticated) {
     // If user is not authenticated, redirect to login page

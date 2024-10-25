@@ -37,7 +37,7 @@ const Signin = () => {
 
       if (response.status === 201) {
         window.alert("Login Successful");
-        localStorage.setItem("token", Data.token);
+        localStorage.setItem("authToken", Data.token);
         navigate("/home");
       } else {
         window.alert("Invalid credentials");

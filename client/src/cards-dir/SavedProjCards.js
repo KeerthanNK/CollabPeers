@@ -14,7 +14,7 @@ const SavedProjCards = (props) => {
   // Unsave project function
   const unsaveProject = async () => {
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("authToken");
       if (!token) {
         console.log("Token not found");
         return;

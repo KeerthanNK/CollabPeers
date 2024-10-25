@@ -6,7 +6,7 @@ const Header = () => {
   const [isDashboardOpen, setIsDashboardOpen] = useState(false);
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("authToken");
     window.location.href = "/";
   };
 
@@ -60,33 +60,10 @@ const Header = () => {
 
       {/* Dashboard Dropdown with Profile Icon */}
       <div
-        className="relative hover:cursor-pointer text-gray-700 font-medium"
-        onClick={(e) => {
-          e.stopPropagation();
-          toggleDashboard();
-        }}
+        className="relative hover:cursor-pointer text-gray-700 font-medium hover:text-[#6366F1] hover:underline"
+        onClick={handleLogout}
       >
-        {/* Profile Icon */}
-        <FontAwesomeIcon icon={faUserCircle} size="2x" />
-
-        {isDashboardOpen && (
-          <div
-            className="dashboard absolute right-0 top-full mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-50"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div
-              className="px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-blue-500 cursor-pointer"
-              onClick={handleLogout}
-            >
-              Logout
-            </div>
-            <a href="/profile">
-            <div className="px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-blue-500 cursor-pointer">
-              Profile 
-            </div>
-            </a>
-          </div>
-        )}
+          logout
       </div>
     </nav>
   );
