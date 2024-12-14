@@ -20,7 +20,7 @@ import Chat from "./pages/Chat";
 import Error from "./pages/Error";
 import Header from "./components/Header"; // Assuming you have a Header component
 import { AuthProvider } from "./context/AuthContext"; // Import the AuthProvider
-import Landing from "./pages/Landing";
+import Landing from "./pages/landing";
 import Profile from "./pages/Profile";
 
 function AppContent() {
@@ -52,7 +52,6 @@ function AppContent() {
           }
         />
         <Route path="/" element={<Landing />} />
-  
 
         {/* Protected routes, only accessible when logged in */}
         <Route
@@ -111,7 +110,7 @@ function AppContent() {
             </ProtectedRoutes>
           }
         />
-                <Route
+        <Route
           path="/profile"
           element={
             <ProtectedRoutes>
