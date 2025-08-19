@@ -17,3 +17,4 @@ Collab-Peers is a web platform designed to help students discover, join, and col
 - **Backend:** Node.js, Express
 - **Database:** MongoDB
 - **Authentication:** JWT
+
